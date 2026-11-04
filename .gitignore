@@ -1,0 +1,6 @@
+.gigacode/
+.gigaide/
+/src/main/resources/application.properties
+target/
+*.iml
+.idea/modules.xml
