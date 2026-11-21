@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_login VARCHAR(100) NOT NULL,
+    user_encoded_password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS chats
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS messages
+(
+    id BIGSERIAL PRIMARY KEY,
+    chat_id BIGINT NOT NULL,
+    creation_time BIGINT NOT NULL,
+    message_text TEXT NOT NULL,
+    is_question BOOLEAN NOT NULL,
+    FOREIGN KEY (chat_id) REFERENCES chats (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
